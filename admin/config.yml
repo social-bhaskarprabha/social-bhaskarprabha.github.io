@@ -1,6 +1,7 @@
 backend:
   name: github
-  repo: yourusername/yourrepositoryname
+  repo: social-bhaskarprabha/social-bhaskarprabha.github.io
+  branch: master
 
 publish_mode: editorial_workflow
 
