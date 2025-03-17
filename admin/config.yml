@@ -1,0 +1,19 @@
+backend:
+  name: github
+  repo: yourusername/yourrepositoryname
+
+publish_mode: editorial_workflow
+
+media_folder: "images/uploads" # Images folder
+public_folder: "/images/uploads" # Publicly accessible URL path
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "index.md"
+        label: "Home Page"
+        name: "home"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown"}
