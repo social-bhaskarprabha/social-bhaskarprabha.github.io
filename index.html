@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"="width=device-width, initial-scale=1.0">
+    <title>Bhaskarprabha Foundation - Vedic Mathematics Gurukul</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #fffaf0, #fef7e2); /* Soft gradient */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23feebc8' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+            color: #422006; /* Dark Brown */
+        }
+
+        header {
+            backdrop-filter: blur(6px);
+            background: rgba(246, 173, 85, 0.85); /* Semi-transparent header */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .header-gradient {
+    backdrop-filter: blur(10px);
+    background: linear-gradient(90deg, rgba(255, 147, 41, 0.95), rgba(255, 97, 0, 0.9));
+    box-shadow: 0 20px 12px rgba(0, 0, 0, 0.15);
+    transition: background 0.8s ease-in-out;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.nav-link {
+    @apply px-3 py-2 text-orange-900 hover:text-white hover:bg-orange-600 rounded-md transition duration-200;
+    font-weight: 500;
+}
+.sticky.shadow-md {
+    box-shadow: 0 4px 20px rgba(255, 97, 0, 0.2);
+}
+
+
+        nav ul li a.nav-link {
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a.nav-link:hover,
+        nav ul li a.nav-link.active {
+            color: #fff;
+            background: linear-gradient(45deg, #f6ad55, #ed8936);
+            border-rasdius: 0.375rem;
+        }
+
+        .gallery-item {
+            background-color: #fed7aa; /* Orange 200 */
+
+            border-radius: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7c2d12; /* Orange 900 text */
+            font-size: 0.875rem;
+            aspect-ratio: auto;
+            transition: transform 0.3s ease, box-shadow 0.2s ease;
+            border: 15px solid #fbd38d; /* Orange 300 border */
+            height: 400px; /* for example */
+            
+        }
+    .gallery-item img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0.5rem;
+}
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            }
+        .btn-primary {
+            background: linear-gradient(45deg, #dd6b20, #c05621); /* New gradient button style */
+            border: none;
+            border-radius: 9999px;
+            padding: 0.75rem 2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .info-card {
+            background-color: white;
+            border-radius: 1rem; /* Increased rounding */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Enhanced shadow */
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none; /* Removed border */
+        }
+
+        .info-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        footer {
+            background: #422006; /* Darker footer */
+            color: #fef7e2; /* Contrasting text color */
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        section {
+            padding: 2rem 0; /* Additional padding */
+        }
+
+        /* Navigation Link Styling */
+        #menu-links .nav-link {
+            padding: 0.5rem 0.75rem; /* Adjusted padding */
+            border-radius: 0.375rem; /* rounded-md */
+            transition: background-color 0.2s ease, color 0.2s ease;
+            border-bottom: 3px solid transparent; /* Keep space but transparent */
+        }
+        #menu-links .nav-link:hover {
+            background-color: rgba(0, 0, 0, 0.1); /* Subtle dark hover */
+            color: white; /* White text on hover */
+        }
+        /* Active navigation link style - No underline, uses background */
+        #menu-links .nav-link.active {
+            font-weight: 700;
+            color: white; /* White text for active */
+            background-color: rgba(0, 0, 0, 0.2); /* Darker background for active */
+            border-bottom-color: transparent; /* Ensure no border */
+        }
+        /* Special handling for logo link active state (optional, can just rely on section) */
+        header > nav > a.nav-link.active {
+             /* Add subtle indication if needed, e.g., slightly bolder text or different effect */
+             /* For now, rely on the section being visible */
+             border-bottom-color: transparent !important; /* Ensure logo link never gets underline */
+        }
+
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Section transition */
+        .page-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .page-section.active {
+            display: block;
+            opacity: 1;
+        }
+        /* Tab styles */
+        .tab-button.active {
+            border-color: #dd6b20;
+            color: #dd6b20;
+            font-weight: 600;
+        }
+        /* Simple fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.7s ease-out forwards;
+        }
+        /* Card styling */
+        .info-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        /* Header Gradient */
+        .header-gradient {
+             background: linear-gradient(to right, #f6ad55, #ed8936); /* Orange 400 to 500 */
+             color: #422006; /* Dark brown text */
+        }
+        /* Enhanced Hero Section */
+        .hero-section {
+            position: relative;
+            background: linear-gradient(135deg, rgba(255,250,240,0.9), rgba(254,252,191,0.9)),
+                        url('https://placehold.co/1200x600/orange/white') no-repeat center center/cover;
+            border: none;
+            border-radius: 0.75rem;
+            padding: 4rem 1rem; /* increased padding for visual impact */
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(255,255,255,0.2);
+            pointer-events: none;
+            mix-blend-mode: soft-light;
+        }
+        .hero-section h1 {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        /* Custom Button Style */
+        .btn-primary {
+             background-color: #dd6b20; /* Orange 600 */
+             color: white;
+             font-weight: 600;
+             padding: 0.75rem 1.5rem;
+             border-radius: 0.5rem;
+             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+             transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: #c05621; /* Orange 700 */
+            transform: translateY(-2px);
+        }
+        /* Headings color */
+        h1, h2, h3, h4, h5, h6 {
+            color: #8c4a1b; /* Darker Brown/Sienna */
+        }
+        /* Specific section title color */
+        .section-title {
+             color: #c05621; /* Darker Orange/Saffron */
+        }
+        /* Faculty card alignment */
+        .faculty-card {
+            align-items: center;
+        }
+        /* Placeholder for Logo */
+        .header-logo {
+            height: 40px;
+            width: auto;
+            margin-right: 10px;
+        }
+        /* Homepage specific styles */
+        .home-intro-image {
+            border-radius: 0.75rem;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 3px solid white;
+        }
+
+        /* New staggered fade-in delays */
+        .fade-in-delay-1 { animation-delay: 0.2s; }
+        .fade-in-delay-2 { animation-delay: 0.4s; }
+        .fade-in-delay-3 { animation-delay: 0.6s; }
+        .fade-in-delay-4 { animation-delay: 0.8s; }
+
+        /* New People Cards enhancements */
+        .people-card {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        .people-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .people-card img {
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .people-card:hover img {
+            transform: scale(1.05);
+            border-color: #ed8936;
+        }
+        .faculty-card h4, .faculty-card p,
+        .student-card h4, .student-card p {
+            font-family: 'Merriweather', serif;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="header-gradient sticky top-0 z-50 shadow-md">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap justify-between items-center">
+            <a href="#home" class="flex items-center text-xl md:text-2xl font-bold nav-link" data-section="home">
+               <img src="bhaskar_prabha.png" alt="Bhaskarprabha Logo" class="w-14 h-14 md:w-16 md:h-16 mr-3">
+
+                <span>Bhaskarprabha Foundation</span>
+            </a>
+            <button id="menu-btn" class="text-inherit focus:outline-none md:hidden p-2 rounded hover:bg-orange-600 transition duration-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+            <div id="menu-links" class="hidden w-full md:flex md:items-center md:w-auto mt-3 md:mt-0">
+                <ul class="flex flex-col md:flex-row md:space-x-1 lg:space-x-2 text-base"> <li><a href="#home" class="nav-link block" data-section="home">Home</a></li>
+                    <li><a href="#about" class="nav-link block" data-section="about">About Us</a></li>
+                    <li><a href="#programs" class="nav-link block" data-section="programs">Programs</a></li>
+                    <li><a href="#people" class="nav-link block" data-section="people">People</a></li>
+                    <li><a href="#achievements" class="nav-link block" data-section="achievements">Achievements</a></li>
+                    <li><a href="#gallery" class="nav-link block" data-section="gallery">Gallery</a></li>
+                    <li><a href="#contact" class="nav-link block" data-section="contact">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+        <section id="home" class="page-section active fade-in">
+            <div class="hero-section">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 section-title">Welcome to Bhaskarprabha</h1>
+                <p class="text-xl md:text-2xl text-orange-700 mb-8 font-medium">Where Mathematics Transforms into an Adventure</p>
+                <p class="text-2xl font-semibold text-orange-800 italic">Transforming Mathematics into Life’s Greatest Strength</p>
+                <!-- New Call-to-Action Button -->
+                <div class="mt-6">
+                    <a href="#programs" class="inline-block btn-primary text-lg px-6 py-3 shadow-lg transform hover:scale-105 transition duration-300">
+                        Explore Our Programs
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center mb-16">
+                <div class="text-lg text-stone-700 leading-relaxed space-y-4">
+                    <p>
+                        Inspired by the <strong class="text-orange-800">ancient Gurukul tradition</strong>, we go beyond textbooks—fostering deep understanding, creativity, and life skills through the beauty of mathematics.
+                    </p>
+                    <p>
+                        At Bhaskarprabha Foundation, mathematics isn’t about memorizing formulas—it’s an adventure into understanding <strong class="text-orange-800">why they work</strong>, how they were discovered, and how they can be applied creatively.
+                    </p>
+                     <p>
+                        With <strong class="text-orange-800">hands-on, mentor-guided learning</strong>, we turn math into a subject that’s simple, logical, and even exciting.
+                    </p>
+                </div>
+                <div class="mt-8 md:mt-0">
+                    <img src="C:\Users\SADHR\Documents\GitHub\social-bhaskarprabha.github.io\Picture1.jpg"
+                         alt="Students learning mathematics in a Gurukul environment"
+                         class="w-full h-auto home-intro-image">
+                    </div>
+            </div>
+
+            <div class="text-center pt-8 border-t border-orange-200">
+                 <h2 class="text-3xl font-semibold mb-6 section-title">Visual Journey</h2>
+                 <p class="text-lg text-stone-600 mb-8 max-w-2xl mx-auto">Explore our vibrant photo gallery showcasing classroom activities, Gurukul life, cultural events, and more—a glimpse into our daily pursuit of mathematical excellence.</p>
+                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                     <div class="gallery-item flex-col">
+<p class="mb-2 font-semibold text-center">Classroom Activity
+</p>
+    <img src="IMG_9848.JPG" alt="Classroom Activity
+"
+         class="w-full h-full object-cover rounded">
+</div>
+                     <div class="gallery-item flex-col"> 
+<p class="mb-2 font-semibold text-center">Gurukul Life</p>
+    <img src="tumtum.jpeg" alt="Gurukul Life"
+         class="w-full h-full object-cover rounded">
+</div>
+                    <div class="gallery-item flex-col">
+    <p class="mb-2 font-semibold text-center">Cultural Event</p>
+    <img src="cultural_event.jpeg" alt="Cultural Event"
+         class="w-full h-full object-cover rounded">
+</div>
+
+
+
+                 </div>
+                 <a href="#gallery" class="inline-block btn-primary nav-link" data-section="gallery">
+                     View Full Gallery
+                 </a>
+            </div>
+        </section>
+
+        <section id="about" class="page-section fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 section-title">About Us</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+                <div class="info-card">
+                    <h3 class="text-2xl font-semibold mb-4">Our Story</h3>
+                    <p class="text-stone-700 leading-relaxed">
+                        Founded in 2022 by Tejas Kulkarni Aacharya and Aditya Maheshwari Sir, Bhaskarprabha Foundation is India’s first traditional Ganit Shastra Paathshala (Maths Gurukul) dedicated to core mathematics education.
+                        <br><br>
+                        Tejas Kulkarni Aacharya completed the Mahapariksha in Bharatiya Ganitshastra at Shringeri Peeth, and Aditya Maheshwari Sir is a Professor at IIM Indore.
+                        <br><br>
+                        We blend ancient wisdom—drawing from timeless granthas—with modern mathematical approaches to create a learning experience that connects the past with contemporary applications.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <h3 class="text-2xl font-semibold mb-4">Vision & Mission</h3>
+                    <ul class="space-y-4 text-stone-700 leading-relaxed">
+                        <li><strong class="text-orange-800">Vision:</strong> Bridge the gap between ancient wisdom and modern applications.</li>
+                        <li><strong class="text-orange-800">Mission:</strong> Empower students with deep, personalized learning in both ancient and modern mathematics, transforming them into confident, independent problem solvers.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="text-2xl md:text-3xl font-semibold text-center mb-8">Our Principles (The Gurukul Ethos)</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="info-card text-center flex flex-col items-center">
+                    <div class="text-4xl text-orange-500 mb-4"><i class="fas fa-book-open"></i></div>
+                    <h4 class="text-xl font-semibold mb-2">Free Education & Facilities</h4>
+                    <p class="text-stone-600 text-sm">Education, accommodation, and all related activities are provided free of charge.</p>
+                </div>
+                <div class="info-card text-center flex flex-col items-center">
+                     <div class="text-4xl text-orange-500 mb-4"><i class="fas fa-hands-helping"></i></div>
+                    <h4 class="text-xl font-semibold mb-2">Swavalamban</h4>
+                    <p class="text-stone-600 text-sm">Students take responsibility for daily routines, developing discipline, independence, and leadership.</p>
+                </div>
+                <div class="info-card text-center flex flex-col items-center">
+                     <div class="text-4xl text-orange-500 mb-4"><i class="fas fa-users"></i></div>
+                    <h4 class="text-xl font-semibold mb-2">Adhyayan & Adhyapan</h4>
+                    <p class="text-stone-600 text-sm">Learning by teaching strengthens understanding and boosts confidence.</p>
+                </div>
+                <div class="info-card text-center flex flex-col items-center">
+                     <div class="text-4xl text-orange-500 mb-4"><i class="fas fa-language"></i></div>
+                    <h4 class="text-xl font-semibold mb-2">Cultural Integrity</h4>
+                    <p class="text-stone-600 text-sm">All instruction and communication take place in Sanskrit, preserving tradition.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="programs" class="page-section fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 section-title">Our Programs</h2>
+
+            <div class="space-y-12">
+                <div class="info-card">
+                    <h3 class="text-2xl font-semibold mb-4">1. Ganit Shastra (Ancient Mathematics)</h3>
+                    <p class="text-stone-700 mb-4">Our flagship 5-year course is designed for students aspiring to become pandits in Ganit Shastra.</p>
+                    <h4 class="text-xl font-semibold text-stone-800 mb-3">Curriculum Overview:</h4>
+                    <p class="text-stone-700 mb-4">The course includes study of 10 Granthas, divided between ancient texts in Sanskrit and modern subjects.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                        <div>
+                            <h5 class="font-semibold text-orange-800 mb-2">Ancient Granthas:</h5>
+                            <ul class="list-disc list-inside text-stone-700 space-y-1 pl-2">
+                                <li>Leelavati – Foundational text</li>
+                                <li>Beejganitam – Groundwork for deeper understanding</li>
+                                <li>Saraltrikonmiti</li>
+                                <li>Rekhaganitam</li>
+                                <li>Pratibhabodhakam</li>
+                                <li>Ganitsaarsangraha etc.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="font-semibold text-orange-800 mb-2">Modern Granthas:</h5>
+                            <ul class="list-disc list-inside text-stone-700 space-y-1 pl-2">
+                                <li>Algebra for Beginners</li>
+                                <li>Coordinate Geometry</li>
+                                <li>Number Theory</li>
+                                <li>Calculus etc.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h4 class="text-xl font-semibold text-stone-800 mb-3">Examinations:</h4>
+                    <p class="text-stone-700">Indian Mathematics Exams (Ganit Shastra) are conducted twice a year (June and December) at Shree Datta Devasthan Trust, Ahilyanagar (formerly Ahmednagar), Maharashtra.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="text-2xl font-semibold mb-4">2. Modern Mathematics (Online)</h3>
+                    <p class="text-stone-700 mb-4">Learn math easily from home with our online classes that cover:</p>
+                    <ul class="list-disc list-inside text-stone-700 space-y-2 pl-2">
+                        <li>Algebra, Geometry, Calculus, and more</li>
+                        <li>Live sessions, recorded lectures, and personalized mentoring</li>
+                        <li>An approach that simplifies complex topics and builds lasting confidence</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="text-2xl font-semibold mb-4">3. Statistics and Computer Science</h3>
+                    <p class="text-stone-700">This program integrates the rigor of statistical methods with computer science fundamentals, preparing students for data analysis, computational problem-solving, and modern mathematical applications.</p>
+                </div>
+
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="info-card">
+                        <h3 class="text-2xl font-semibold mb-4">Residential Program</h3>
+                        <h4 class="font-semibold text-stone-800 mb-2">Experience Gurukul Living:</h4>
+                        <p class="text-stone-700 mb-3">Immerse yourself fully in a traditional learning environment on campus. Live alongside peers, attend daily lessons, and build strong mentor relationships.</p>
+                        <p class="text-sm text-stone-500 italic">Note: Residential facilities are currently available for boys, with plans to expand for girls soon.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3 class="text-2xl font-semibold mb-4">Day Program</h3>
+                         <h4 class="font-semibold text-stone-800 mb-2">Flexibility for Local Students:</h4>
+                        <p class="text-stone-700">Attend classes during the day without residential commitments, enjoying the same high-quality education while living at home.</p>
+                    </div>
+                </div>
+
+                 <div class="info-card">
+                    <h3 class="text-2xl font-semibold mb-4">Current Activities</h3>
+                    <ul class="list-disc list-inside text-stone-700 space-y-2 pl-2">
+                        <li>New students start their journey with the Leelavati Granth.</li>
+                        <li>Progressive learning through Bhartiya Ganit Shastra Granthas (Bijganit, Trikonmiti, Rekha Ganit, etc.).</li>
+                        <li>Introduction to Nyaya Shastra using Vidyadhari by M. M. Devdutta Patil.</li>
+                        <li>Modern Mathematics Studies: Algebra, Number Theory, Geometry, Calculus, problem-solving, and Statistics.</li>
+                        <li>Technology Integration: Exposure to computers, Excel, programming languages, computational software, and mathematical typesetting tools.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="people" class="page-section fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 section-title">Our People</h2>
+
+            <div class="mb-8 border-b border-orange-200 flex justify-center space-x-4 md:space-x-8">
+                <button class="tab-button py-2 px-4 border-b-2 border-transparent text-lg text-stone-600 hover:text-orange-700 transition duration-200 active" data-tab="faculty">Faculty</button>
+                <button class="tab-button py-2 px-4 border-b-2 border-transparent text-lg text-stone-600 hover:text-orange-700 transition duration-200" data-tab="students">Students</button>
+            </div>
+
+            <div>
+                <div id="tab-faculty" class="tab-content active fade-in">
+                    <h3 class="text-2xl font-semibold text-center mb-8">Faculty</h3>
+                    <div class="space-y-8">
+                        <div class="info-card people-card md:flex md:space-x-6 faculty-card fade-in fade-in-delay-1"> <div class="md:w-1/4 text-center md:text-left mb-4 md:mb-0 flex-shrink-0">
+                                <img src="https://placehold.co/150x150/fed7aa/7c2d12?text=TKA" alt="Tejas Kulkarni Aacharya" class="rounded-full mx-auto md:mx-0 w-24 h-24 md:w-32 md:h-32 object-cover shadow-md mb-2 border-2 border-orange-200">
+                                <h4 class="text-xl font-semibold text-stone-800">Tejas Kulkarni Aacharya</h4>
+                                <p class="text-sm text-orange-700 font-medium">Indian Mathematics</p>
+                            </div>
+                            <div class="md:w-3/4">
+                                <p class="text-stone-700 leading-relaxed mb-2">
+                                    A disciple of M. M. Devdatta Patil Guruji, Tejas Kulkarni transitioned from Nyaya Shastra to mastering Bhartiya Ganit Shastra upon his guruji’s advice. He is the first person in India to complete the Ganit Maha Pariksha at Shringeri Math in the presence of Swami Vidushekhar Bharti Maharaj ji.
+                                </p>
+                                <p class="text-sm text-stone-500"><strong>Additional Expertise:</strong> Ancient Bharatiya Shastra, Upanishad, Purana, Vedic education, Shad Darshanas (षडदर्शन), Ashtanga Yoga.</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card people-card md:flex md:space-x-6 faculty-card fade-in fade-in-delay-2">
+                             <div class="md:w-1/4 text-center md:text-left mb-4 md:mb-0 flex-shrink-0">
+                                <img src="https://placehold.co/150x150/fed7aa/7c2d12?text=AM" alt="Dr. Aditya Maheshwari" class="rounded-full mx-auto md:mx-0 w-24 h-24 md:w-32 md:h-32 object-cover shadow-md mb-2 border-2 border-orange-200">
+                                <h4 class="text-xl font-semibold text-stone-800">Dr. Aditya Maheshwari</h4>
+                                <p class="text-sm text-orange-700 font-medium">Modern Mathematics</p>
+                            </div>
+                            <div class="md:w-3/4">
+                                <p class="text-stone-700 leading-relaxed mb-2">
+                                    Associate Professor at IIM Indore and a Ph.D. holder from IIT Bombay, his research focuses on probability, stochastic processes, and numerical analysis. He is engaged in an IKS-funded project titled “Mathematics and Nyaaya Darashana” alongside Tejas Kulkarni ji and is a consortium member of the BharaGen initiative.
+                                </p>
+                            </div>
+                        </div>
+
+                         <div class="info-card people-card md:flex md:space-x-6 faculty-card fade-in fade-in-delay-3">
+                             <div class="md:w-1/4 text-center md:text-left mb-4 md:mb-0 flex-shrink-0">
+                                <img src="https://placehold.co/150x150/fed7aa/7c2d12?text=BL" alt="Beena Limkar" class="rounded-full mx-auto md:mx-0 w-24 h-24 md:w-32 md:h-32 object-cover shadow-md mb-2 border-2 border-orange-200">
+                                <h4 class="text-xl font-semibold text-stone-800">Beena Limkar</h4>
+                                <p class="text-sm text-orange-700 font-medium">Modern Mathematics</p>
+                            </div>
+                            <div class="md:w-3/4">
+                                <p class="text-stone-700 leading-relaxed mb-2">
+                                   An experienced engineer with Siemens Digital Industry Software, Beena brings 30 years of industry experience and 7 years of academic teaching from Savitribai Phule Pune University. With degrees from College of Engineering Pune, IIT Mumbai, and a Ph.D. in Mechanical and Materials Technology, her interests span Stress Analysis, Mechanical Vibrations, Music Technology, and Mathematical Modelling.
+                                </p>
+                            </div>
+                        </div>
+
+                         <div class="info-card people-card md:flex md:space-x-6 faculty-card fade-in fade-in-delay-4">
+                             <div class="md:w-1/4 text-center md:text-left mb-4 md:mb-0 flex-shrink-0">
+                                <img src="https://placehold.co/150x150/fed7aa/7c2d12?text=RTA" alt="Dr. Rashmi Tiwari Acharyaa" class="rounded-full mx-auto md:mx-0 w-24 h-24 md:w-32 md:h-32 object-cover shadow-md mb-2 border-2 border-orange-200">
+                                <h4 class="text-xl font-semibold text-stone-800">Dr. Rashmi Tiwari Acharyaa</h4>
+                                <p class="text-sm text-orange-700 font-medium">Statistics</p>
+                            </div>
+                            <div class="md:w-3/4">
+                                <p class="text-stone-700 leading-relaxed mb-2">
+                                    A Senior Project Research Scientist at IIT Bombay, she specializes in disease modelling, biostatistics, order statistics, time series analysis, and clinical trials. Holding a Ph.D. from the University of Delhi, her teaching experience spans several reputed institutions, focusing on statistics, probability, calculus, and time series analysis.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="info-card people-card md:flex md:space-x-6 faculty-card fade-in fade-in-delay-1">
+                             <div class="md:w-1/4 text-center md:text-left mb-4 md:mb-0 flex-shrink-0">
+                                 <div class="flex justify-center md:justify-start -space-x-4 mb-2">
+                                     <img src="https://placehold.co/100x100/fed7aa/7c2d12?text=RS" alt="Rajat Sir" class="rounded-full w-16 h-16 md:w-20 md:h-20 object-cover shadow-md border-2 border-white">
+                                     <img src="https://placehold.co/100x100/fed7aa/7c2d12?text=MS" alt="Mahesh Sir" class="rounded-full w-16 h-16 md:w-20 md:h-20 object-cover shadow-md border-2 border-white">
+                                 </div>
+                                <h4 class="text-xl font-semibold text-stone-800">Rajat Sir & Mahesh Sir</h4>
+                                <p class="text-sm text-orange-700 font-medium">Computer Programming</p>
+                            </div>
+                            <div class="md:w-3/4">
+                                <p class="text-stone-700 leading-relaxed">
+                                    Our computer programming faculty bring essential skills in coding, computational software, and mathematical typesetting—ensuring students are well-prepared for modern technological challenges.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-students" class="tab-content fade-in">
+                    <h3 class="text-2xl font-semibold text-center mb-8">Our Students</h3>
+                    <p class="text-lg text-center text-stone-600 mb-8 max-w-2xl mx-auto">Our vibrant community of students is at the heart of Bhaskarprabha. Here are some of the dedicated learners on their journey with us:</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 text-center">
+                        <div class="info-card people-card p-4 transform transition hover:scale-105 duration-300 fade-in fade-in-delay-1">
+                            <img src="https://placehold.co/100x100/fed7aa/7c2d12?text=AP" alt="Avinash Pokhrel" class="rounded-full w-20 h-20 mx-auto mb-3 shadow-sm border-2 border-orange-100">
+                            <p class="font-medium text-stone-700">Avinash Pokhrel</p>
+                        </div>
+                         <div class="info-card people-card p-4 transform transition hover:scale-105 duration-300 fade-in fade-in-delay-2">
+                            <img src="https://placehold.co/100x100/fed7aa/7c2d12?text=SL" alt="Shreya Lonikar" class="rounded-full w-20 h-20 mx-auto mb-3 shadow-sm border-2 border-orange-100">
+                            <p class="font-medium text-stone-700">Shreya Lonikar</p>
+                        </div>
+                         <div class="info-card people-card p-4 transform transition hover:scale-105 duration-300 fade-in fade-in-delay-3">
+                            <img src="https://placehold.co/100x100/fed7aa/7c2d12?text=AT" alt="Akhil Tiwari" class="rounded-full w-20 h-20 mx-auto mb-3 shadow-sm border-2 border-orange-100">
+                            <p class="font-medium text-stone-700">Akhil Tiwari</p>
+                        </div>
+                         <div class="info-card people-card p-4 transform transition hover:scale-105 duration-300 fade-in fade-in-delay-4">
+                            <img src="https://placehold.co/100x100/fed7aa/7c2d12?text=VT" alt="Vaidik Thakkar" class="rounded-full w-20 h-20 mx-auto mb-3 shadow-sm border-2 border-orange-100">
+                            <p class="font-medium text-stone-700">Vaidik Thakkar</p>
+                        </div>
+                         <div class="info-card people-card p-4 transform transition hover:scale-105 duration-300 fade-in fade-in-delay-1">
+                            <img src="https://placehold.co/100x100/fed7aa/7c2d12?text=ST" alt="Shreyak Thakkar" class="rounded-full w-20 h-20 mx-auto mb-3 shadow-sm border-2 border-orange-100">
+                            <p class="font-medium text-stone-700">Shreyak Thakkar</p>
+                        </div>
+                         <div class="info-card people-card p-4 transform transition hover:scale-105 duration-300 fade-in fade-in-delay-2">
+                            <img src="https://placehold.co/100x100/fed7aa/7c2d12?text=N" alt="Nameet" class="rounded-full w-20 h-20 mx-auto mb-3 shadow-sm border-2 border-orange-100">
+                            <p class="font-medium text-stone-700">Nameet</p>
+                        </div>
+                        <div class="info-card people-card p-4 transform transition hover:scale-105 duration-300 fade-in fade-in-delay-3">
+                            <img src="https://placehold.co/100x100/fed7aa/7c2d12?text=TS" alt="Tavas Shah" class="rounded-full w-20 h-20 mx-auto mb-3 shadow-sm border-2 border-orange-100">
+                            <p class="font-medium text-stone-700">Tavas Shah</p>
+                        </div>
+                         <div class="info-card people-card p-4 transform transition hover:scale-105 duration-300 fade-in fade-in-delay-4">
+                            <img src="https://placehold.co/100x100/fed7aa/7c2d12?text=SP" alt="Shailesh Pandey" class="rounded-full w-20 h-20 mx-auto mb-3 shadow-sm border-2 border-orange-100">
+                            <p class="font-medium text-stone-700">Shailesh Pandey</p>
+                        </div>
+                        </div>
+                     <p class="text-center text-stone-500 mt-8 italic">(Profiles and success stories can be featured here.)</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements" class="page-section fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 section-title">Achievements & Milestones</h2>
+            <p class="text-lg text-center text-stone-600 mb-12 max-w-3xl mx-auto">We take immense pride in the progress and accomplishments of our students and faculty.</p>
+
+            <div class="space-y-8 max-w-4xl mx-auto">
+                 <div class="info-card border-l-4 border-orange-500">
+                    <h3 class="text-2xl font-semibold mb-3">2024 Achievements</h3>
+                    <ul class="list-disc list-inside text-stone-700 space-y-2 pl-2">
+                        <li><strong class="text-orange-800">National Recognition:</strong> Shreya Lonikar secured a Gold Medal at the national-level Ganit Shalaka Pariksha conducted by Rashtriya Sanskrit Sansthan at Ayodhya (March 2024).</li>
+                        <li>Two students completed the Beejganitam Grantha exams.</li>
+                        <li>Two students completed the Leelavati Granth exams.</li>
+                        <li>Tejas Kulkarni Guruji achieved the milestone of completing the Ganit Maha Pariksha.</li>
+                    </ul>
+                 </div>
+
+                 <div class="info-card border-l-4 border-amber-500"> <h3 class="text-2xl font-semibold mb-3">2023 Achievements</h3>
+                     <ul class="list-disc list-inside text-stone-700 space-y-2 pl-2">
+                         <li>Establishment of the paathshala at Hingane, Sinhagad Road, Pune with three residential students.</li>
+                         <li>Successful completion of the Leelavati Granth exam by two students.</li>
+                     </ul>
+                 </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="page-section fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 section-title">Gallery</h2>
+            <p class="text-lg text-center text-stone-600 mb-12 max-w-3xl mx-auto">A Peek into Our Gurukul Life: Discover the day-to-day experiences at Bhaskarprabha Foundation through our curated gallery of photos and videos that capture classroom learning, cultural events, and community interactions.</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
+                <div class="gallery-item flex flex-col items-center justify-start p-2">
+ 
+
+  <!-- Image Example -->
+  <img src="shankaracharya.jpeg" alt="Classroom Activity"
+       class="w-full h-auto object-cover rounded-lg shadow-md mb-2"></div>
+                <div class="gallery-item flex flex-col items-center justify-start p-2">
+ 
+
+  <!-- Image Example -->
+  <img src="guruji.JPG" alt="Classroom Activity"
+       class="w-full h-auto object-cover rounded-lg shadow-md mb-2"></div>
+
+                <div class="gallery-item flex flex-col items-center justify-start p-2">
+ 
+
+  <!-- Image Example -->
+  <img src="shreyak.JPG" alt="Classroom Activity"
+       class="w-full h-auto object-cover rounded-lg shadow-md mb-2"></div>
+
+
+               <div class="gallery-item flex flex-col items-center justify-start p-2">
+ 
+
+  <!-- Image Example -->
+  <img src="WhatsApp Image 2025-04-14 at 12.47.00 (1).JPEG" alt="Classroom Activity"
+       class="w-full h-auto object-cover rounded-lg shadow-md mb-2"></div>
+
+                <div class="gallery-item">Image/Video 5</div>
+                <div class="gallery-item">Image/Video 6</div>
+                <div class="gallery-item">Image/Video 7</div>
+                <div class="gallery-item">Image/Video 8</div>
+                <div class="gallery-item">Image/Video 9</div>
+                <div class="gallery-item">Image/Video 10</div>
+                <div class="gallery-item">Image/Video 11</div>
+                <div class="gallery-item">Image/Video 12</div>
+            </div>
+             <p class="text-center text-stone-500 mt-8 italic">Please replace these placeholders with actual images and videos from the foundation.</p>
+        </section>
+
+        <section id="contact" class="page-section fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 section-title">Contact Us</h2>
+            <p class="text-lg text-center text-stone-600 mb-12 max-w-3xl mx-auto">Got questions or want to learn more about our programs and teaching methods? We’re here to help you start your journey into the world of mathematics. Feel free to reach out!</p>
+
+            <div class="info-card max-w-4xl mx-auto"> <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12"> <div class="space-y-5 text-stone-700"> <h3 class="text-xl font-semibold mb-3">Get in Touch</h3>
+                        <p class="flex items-start"><i class="fas fa-envelope mt-1 mr-3 text-orange-600 w-5 text-center"></i> <a href="mailto:[Insert Email Address]" class="hover:text-orange-700">[Insert Email Address]</a></p>
+                        <p class="flex items-start"><i class="fas fa-phone mt-1 mr-3 text-orange-600 w-5 text-center"></i> <a href="tel:[Insert Phone Number]" class="hover:text-orange-700">[Insert Phone Number]</a></p>
+                        <p class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-3 text-orange-600 w-5 text-center"></i>
+                            <span>[Insert Physical Address or Directions] <br> <span class="text-sm text-stone-500">Hingane, Sinhagad Road, Pune (Initial Location)</span></span>
+                        </p>
+                         <div class="pt-2"> <h4 class="font-semibold mb-3">Follow Us:</h4>
+                             <div class="flex space-x-5"> <a href="#" class="text-stone-500 hover:text-orange-600 transition duration-200" aria-label="Facebook"><i class="fab fa-facebook fa-lg"></i></a>
+                                 <a href="#" class="text-stone-500 hover:text-orange-600 transition duration-200" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+                                 <a href="#" class="text-stone-500 hover:text-orange-600 transition duration-200" aria-label="Twitter"><i class="fab fa-twitter fa-lg"></i></a>
+                                 <a href="#" class="text-stone-500 hover:text-orange-600 transition duration-200" aria-label="YouTube"><i class="fab fa-youtube fa-lg"></i></a>
+                             </div>
+                         </div>
+                    </div>
+
+                    <div>
+                         <h3 class="text-xl font-semibold mb-3">Send a Message</h3>
+                         <form action="#" method="POST" class="space-y-4">
+                             <div>
+                                 <label for="name" class="block text-sm font-medium text-stone-700">Name</label>
+                                 <input type="text" id="name" name="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm bg-white">
+                             </div>
+                              <div>
+                                 <label for="email" class="block text-sm font-medium text-stone-700">Email</label>
+                                 <input type="email" id="email" name="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm bg-white">
+                             </div>
+                              <div>
+                                 <label for="message" class="block text-sm font-medium text-stone-700">Message</label>
+                                 <textarea id="message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm bg-white"></textarea>
+                             </div>
+                             <div>
+                                 <button type="submit" class="w-full inline-flex justify-center btn-primary">
+                                     Send Message
+                                 </button>
+                             </div>
+                             <p class="text-xs text-stone-500 text-center">Note: Form submission requires backend setup.</p>
+                         </form>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-800 text-stone-300 mt-16 py-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; <span id="current-year"></span> Bhaskarprabha Foundation. All Rights Reserved.</p>
+            <p class="text-sm mt-2 text-orange-300">Bridging Ancient Wisdom and Modern Mathematics</p>
+             </div>
+    </footer>
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const menuBtn = document.getElementById('menu-btn');
+        const menuLinks = document.getElementById('menu-links');
+
+        menuBtn.addEventListener('click', () => {
+            menuLinks.classList.toggle('hidden');
+        });
+
+        // --- Single Page Application (SPA) Navigation ---
+        const navLinks = document.querySelectorAll('.nav-link'); // Selects all nav links including logo
+        const sections = document.querySelectorAll('.page-section');
+        const header = document.querySelector('header');
+        const defaultSection = 'home';
+
+        function setActiveSection(sectionId) {
+            sections.forEach(section => {
+                section.classList.remove('active');
+                section.style.display = 'none';
+            });
+             // Remove active class from all nav links (in header and menu)
+             document.querySelectorAll('header .nav-link').forEach(link => {
+                 link.classList.remove('active');
+             });
+
+            const targetSection = document.getElementById(sectionId);
+            // Find links specifically in the menu UL and the main logo link
+            const targetMenuLink = document.querySelector(`#menu-links .nav-link[data-section="${sectionId}"]`);
+            const targetLogoLink = document.querySelector(`header > nav > a.nav-link[data-section="${sectionId}"]`); // Target logo link
+
+            if (targetSection) {
+                targetSection.style.display = 'block';
+                setTimeout(() => {
+                    targetSection.classList.add('active');
+                }, 10);
+            } else {
+                // Fallback to default
+                const defaultSec = document.getElementById(defaultSection);
+                 if (defaultSec) {
+                     defaultSec.style.display = 'block';
+                     setTimeout(() => {
+                        defaultSec.classList.add('active');
+                    }, 10);
+                 }
+                // Activate default link in menu and logo
+                const defaultMenuLink = document.querySelector(`#menu-links .nav-link[data-section="${defaultSection}"]`);
+                const defaultLogoLink = document.querySelector(`header > nav > a.nav-link[data-section="${defaultSection}"]`);
+                if (defaultMenuLink) defaultMenuLink.classList.add('active');
+                if (defaultLogoLink) defaultLogoLink.classList.add('active'); // Activate logo link if home is default
+            }
+
+            // Add active class to the found link(s)
+            if (targetMenuLink) {
+                targetMenuLink.classList.add('active');
+            }
+             // Add active class to the logo link IF the target section is home
+             if (targetLogoLink && sectionId === 'home') {
+                 targetLogoLink.classList.add('active'); // Only add active class to logo if it's the home section
+             }
+
+
+             // Close mobile menu
+             if (!menuLinks.classList.contains('hidden') && window.innerWidth < 768) {
+                 menuLinks.classList.add('hidden');
+             }
+
+             // Scroll to top
+             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add event listeners to ALL nav links (including logo)
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const sectionId = link.getAttribute('data-section');
+                if (sectionId) {
+                    e.preventDefault();
+                    // window.location.hash = sectionId; // Optional hash update
+                    setActiveSection(sectionId);
+                }
+            });
+        });
+
+        // --- Tab Functionality (People Section) ---
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                tabContents.forEach(content => {
+                    if (content.id === `tab-${tabId}`) {
+                        content.style.display = 'block';
+                         setTimeout(() => {
+                             content.classList.add('active');
+                             content.classList.remove('fade-in');
+                             void content.offsetWidth;
+                             content.classList.add('fade-in');
+                         }, 10);
+                    } else {
+                        content.classList.remove('active');
+                         content.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+
+        // --- Initialize Page ---
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            const initialSectionId = window.location.hash.substring(1) || defaultSection;
+            setActiveSection(initialSectionId);
+
+            // Init tabs correctly
+             if (initialSectionId === 'people') {
+                 const initialActiveTabButton = document.querySelector('.tab-button.active') || document.querySelector('.tab-button[data-tab="faculty"]'); // Default to faculty if none active
+                 if (initialActiveTabButton) {
+                     const initialTabId = initialActiveTabButton.getAttribute('data-tab');
+                     const initialTabContent = document.getElementById(`tab-${initialTabId}`);
+                     if(initialTabContent) {
+                         tabContents.forEach(content => content.style.display = 'none');
+                         initialTabContent.style.display = 'block';
+                         initialTabContent.classList.add('active');
+                         initialActiveTabButton.classList.add('active'); // Ensure button is active too
+                     }
+                 }
+             } else {
+                 // Ensure faculty tab is default if people section isn't initial
+                 const facultyButton = document.querySelector('.tab-button[data-tab="faculty"]');
+                 const facultyContent = document.getElementById('tab-faculty');
+                 const studentButton = document.querySelector('.tab-button[data-tab="students"]');
+                 const studentContent = document.getElementById('tab-students');
+
+                 if (facultyButton && facultyContent && studentButton && studentContent) {
+                     facultyButton.classList.add('active');
+                     facultyContent.classList.add('active');
+                     facultyContent.style.display = 'block';
+                     studentButton.classList.remove('active');
+                     studentContent.classList.remove('active');
+                     studentContent.style.display = 'none';
+                 }
+             }
+        });
+
+         // Handle hash changes
+         window.addEventListener('hashchange', () => {
+             const sectionId = window.location.hash.substring(1) || defaultSection;
+             setActiveSection(sectionId);
+         });
+
+    </script>
+
+</body>
+</html>
