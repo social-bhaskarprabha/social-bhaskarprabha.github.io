@@ -1,0 +1,704 @@
+import { motion } from "framer-motion";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import React, { useState } from "react";
+
+export default function Bhaskarprabha() {
+  // Contact Form State
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [submitStatus, setSubmitStatus] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Placeholder for backend submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitStatus("Sending...");
+    // Example fetch call to a backend endpoint
+    try {
+      // Replace with your real endpoint
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("Success! We'll get back to you soon.");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setSubmitStatus("Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      setSubmitStatus("Server error. Please try again.");
+    }
+  };
+
+  return (
+    <div className="min-h-screen w-full font-sans text-gray-900 bg-white">
+      {/**
+        NAVIGATION
+      **/}
+      <nav className="fixed top-0 left-0 w-full bg-white border-b border-gray-200 z-50">
+        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            {/* Logo Placeholder */}
+            <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-xs font-semibold text-gray-500">
+              Logo
+            </div>
+            <span className="font-bold text-xl tracking-wide">Bhaskarprabha</span>
+          </div>
+          <div className="space-x-4 hidden md:block">
+            <a href="#home" className="hover:underline">Home</a>
+            <a href="#our-story" className="hover:underline">Our Story</a>
+            <a href="#programs" className="hover:underline">Programs</a>
+            <a href="#people" className="hover:underline">People</a>
+            <a href="#achievements" className="hover:underline">Achievements</a>
+            <a href="#gallery" className="hover:underline">Gallery</a>
+            <a href="#contact" className="hover:underline">Contact</a>
+          </div>
+        </div>
+      </nav>
+
+      {/**
+        HERO SECTION
+      **/}
+      <section
+        id="home"
+        className="relative pt-[72px] h-[80vh] flex items-center justify-center text-center bg-cover bg-center"
+        style={{ backgroundImage: "url('https://via.placeholder.com/1200x800?text=Welcome+to+Bhaskarprabha')" }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="max-w-3xl mx-auto text-white relative z-10 px-4"
+        >
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+            Bhaskarprabha Foundation
+          </h1>
+          <p className="text-xl md:text-2xl italic mb-6">
+            Where Mathematics Transforms into an Adventure
+          </p>
+          <Button className="px-8 py-3 rounded-full font-semibold bg-white text-gray-900 hover:bg-gray-200 transition duration-300">
+            Enroll Now
+          </Button>
+        </motion.div>
+      </section>
+
+      {/**
+        INTRO SECTION
+      **/}
+      <section className="py-16 px-4 md:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-4xl font-bold mb-6"
+          >
+            Transforming Mathematics into Life’s Greatest Strength
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="text-lg md:text-xl text-gray-700"
+          >
+            At Bhaskarprabha Foundation, mathematics isn’t about memorizing formulas—it’s an adventure into understanding why they work, how they were discovered, and how they can be applied creatively.
+          </motion.p>
+        </div>
+      </section>
+
+      {/**
+        OUR STORY SECTION
+      **/}
+      <section
+        id="our-story"
+        className="py-16 px-4 md:px-8 bg-gray-50"
+      >
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="order-2 md:order-1"
+          >
+            <img
+              src="https://via.placeholder.com/600x400?text=Our+Story+Photo"
+              alt="Our Story Photo"
+              className="w-full h-auto rounded-lg shadow"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="order-1 md:order-2"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Story</h2>
+            <p className="mb-6 text-gray-700 leading-relaxed">
+              Founded in 2022 by <strong>Tejas Kulkarni Aacharya</strong> and <strong>Aditya Maheshwari Sir</strong> — blending ancient wisdom with modern mathematics for a transformative learning journey.
+            </p>
+            <ul className="list-disc pl-6 space-y-2 text-gray-700">
+              <li>Free Education & Facilities</li>
+              <li>Swavalamban - Life Skills</li>
+              <li>Adhyayan & Adhyapan</li>
+              <li>Cultural Integrity (Sanskrit Medium)</li>
+            </ul>
+          </motion.div>
+        </div>
+      </section>
+
+      {/**
+        PROGRAMS SECTION
+      **/}
+      <section
+        id="programs"
+        className="py-16 px-4 md:px-8"
+      >
+        <div className="max-w-5xl mx-auto text-center mb-10">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-4xl font-bold"
+          >
+            Programs
+          </motion.h2>
+        </div>
+
+        <div className="max-w-5xl mx-auto">
+          <Tabs defaultValue="ganit">
+            <TabsList className="flex mb-6 border-b border-gray-200 mx-auto max-w-xl">
+              <TabsTrigger value="ganit" className="px-4 py-2 font-semibold text-gray-600 focus:outline-none">Ganit Shastra</TabsTrigger>
+              <TabsTrigger value="modern" className="px-4 py-2 font-semibold text-gray-600 focus:outline-none">Modern Math</TabsTrigger>
+              <TabsTrigger value="stats" className="px-4 py-2 font-semibold text-gray-600 focus:outline-none">Stats & CS</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="ganit">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <Card className="shadow border md:col-span-1">
+                  <CardContent className="p-6">
+                    <h3 className="font-bold text-xl mb-2">Flagship 5-Year Course</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Study of 10 granthas combining ancient and modern math. Exams in June & December at Shree Datta Devasthan Trust, Ahilyanagar.
+                    </p>
+                  </CardContent>
+                </Card>
+                <img
+                  src="https://via.placeholder.com/600x400?text=Ganit+Shastra"
+                  alt="Ganit Shastra"
+                  className="w-full h-auto rounded-lg shadow md:col-span-1"
+                />
+              </div>
+            </TabsContent>
+
+            <TabsContent value="modern">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <Card className="shadow border">
+                  <CardContent className="p-6">
+                    <h3 className="font-bold text-xl mb-2">Online Math Classes</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Covering Algebra, Geometry, Calculus with live/recorded sessions & mentoring. Simplified, interactive, flexible learning.
+                    </p>
+                  </CardContent>
+                </Card>
+                <img
+                  src="https://via.placeholder.com/600x400?text=Modern+Math"
+                  alt="Modern Math"
+                  className="w-full h-auto rounded-lg shadow"
+                />
+              </div>
+            </TabsContent>
+
+            <TabsContent value="stats">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <Card className="shadow border">
+                  <CardContent className="p-6">
+                    <h3 className="font-bold text-xl mb-2">Statistics & Computer Science</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Rigorous training in statistical methods and CS tools for real-world problem solving. Includes Excel, programming & typesetting.
+                    </p>
+                  </CardContent>
+                </Card>
+                <img
+                  src="https://via.placeholder.com/600x400?text=Stats+%26+CS"
+                  alt="Stats & Computer Science"
+                  className="w-full h-auto rounded-lg shadow"
+                />
+              </div>
+            </TabsContent>
+          </Tabs>
+
+          {/* Residential and Day Programs */}
+          <div className="grid md:grid-cols-2 gap-8 mt-14">
+            <motion.div
+              className="border p-6 rounded-xl shadow bg-gray-50"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3 className="text-xl font-semibold mb-2">Residential Program</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Immerse yourself in Gurukul living on campus. Live alongside peers, attend daily lessons, and build strong mentor relationships.
+              </p>
+              <p className="mt-2 text-sm italic">Note: Currently available for boys; expansion for girls soon.</p>
+            </motion.div>
+
+            <motion.div
+              className="border p-6 rounded-xl shadow bg-gray-50"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3 className="text-xl font-semibold mb-2">Day Program</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Attend classes without residential commitments. Enjoy the same high-quality education while living at home.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/**
+        PEOPLE SECTION
+      **/}
+      <section id="people" className="py-16 px-4 md:px-8 bg-gray-100">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-4xl font-bold text-center mb-10"
+          >
+            People
+          </motion.h2>
+
+          <Tabs defaultValue="faculty">
+            <TabsList className="flex mb-6 border-b border-gray-200 mx-auto max-w-xl">
+              <TabsTrigger value="faculty" className="px-4 py-2 font-semibold text-gray-600 focus:outline-none">Faculty</TabsTrigger>
+              <TabsTrigger value="students" className="px-4 py-2 font-semibold text-gray-600 focus:outline-none">Students</TabsTrigger>
+            </TabsList>
+
+            {/* Faculty */}
+            <TabsContent value="faculty" className="space-y-6">
+              {/* Single Person Card Example */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="bg-white p-6 rounded-xl shadow flex flex-col md:flex-row items-center"
+              >
+                <img
+                  src="https://via.placeholder.com/150?text=Tejas+Kulkarni"
+                  alt="Tejas Kulkarni"
+                  className="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6"
+                />
+                <div>
+                  <h3 className="text-xl font-semibold mb-1">Tejas Kulkarni Aacharya</h3>
+                  <p className="text-gray-700">Expert in Bharatiya Ganit Shastra, disciple of M. M. Devdatta Patil Guruji.</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="bg-white p-6 rounded-xl shadow flex flex-col md:flex-row items-center"
+              >
+                <img
+                  src="https://via.placeholder.com/150?text=Aditya+Maheshwari"
+                  alt="Aditya Maheshwari"
+                  className="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6"
+                />
+                <div>
+                  <h3 className="text-xl font-semibold mb-1">Dr. Aditya Maheshwari</h3>
+                  <p className="text-gray-700">Associate Professor at IIM Indore, Ph.D. from IIT Bombay. Research in probability & numerical analysis.</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="bg-white p-6 rounded-xl shadow flex flex-col md:flex-row items-center"
+              >
+                <img
+                  src="https://via.placeholder.com/150?text=Beena+Limkar"
+                  alt="Beena Limkar"
+                  className="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6"
+                />
+                <div>
+                  <h3 className="text-xl font-semibold mb-1">Beena Limkar</h3>
+                  <p className="text-gray-700">Engineer with Siemens (30+ yrs). Teaching experience in mechanical vibrations, music tech, modeling.</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="bg-white p-6 rounded-xl shadow flex flex-col md:flex-row items-center"
+              >
+                <img
+                  src="https://via.placeholder.com/150?text=Rashmi+Tiwari"
+                  alt="Rashmi Tiwari"
+                  className="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6"
+                />
+                <div>
+                  <h3 className="text-xl font-semibold mb-1">Dr. Rashmi Tiwari</h3>
+                  <p className="text-gray-700">Senior Project Scientist at IIT Bombay. Expertise in biostatistics, time series, clinical trials.</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="bg-white p-6 rounded-xl shadow flex flex-col md:flex-row items-center"
+              >
+                <img
+                  src="https://via.placeholder.com/150?text=Rajat+%26+Mahesh"
+                  alt="Rajat Sir & Mahesh Sir"
+                  className="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6"
+                />
+                <div>
+                  <h3 className="text-xl font-semibold mb-1">Rajat Sir & Mahesh Sir</h3>
+                  <p className="text-gray-700">Programming faculty for computational software & mathematical typesetting skills.</p>
+                </div>
+              </motion.div>
+            </TabsContent>
+
+            {/* Students */}
+            <TabsContent value="students" className="space-y-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="bg-white p-6 rounded-xl shadow flex flex-col md:flex-row items-center"
+              >
+                <img
+                  src="https://via.placeholder.com/150?text=Shreya+Lonikar"
+                  alt="Shreya Lonikar"
+                  className="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6"
+                />
+                <div>
+                  <h3 className="text-xl font-semibold mb-1">Shreya Lonikar</h3>
+                  <p className="text-gray-700">Gold Medalist at Ganit Shalaka Pariksha (2024). Excelling in Bharatiya Ganit & Modern Math.</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="bg-white p-6 rounded-xl shadow flex flex-col md:flex-row items-center"
+              >
+                <img
+                  src="https://via.placeholder.com/150?text=Avinash+Pokhrel"
+                  alt="Avinash Pokhrel"
+                  className="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6"
+                />
+                <div>
+                  <h3 className="text-xl font-semibold mb-1">Avinash Pokhrel</h3>
+                  <p className="text-gray-700">Passionate about Number Theory and Vedic Mathematics. Aspiring Ganit Shastra Pandit.</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="bg-white p-6 rounded-xl shadow flex flex-col md:flex-row items-center"
+              >
+                <img
+                  src="https://via.placeholder.com/150?text=Akhil+Tiwari"
+                  alt="Akhil Tiwari"
+                  className="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6"
+                />
+                <div>
+                  <h3 className="text-xl font-semibold mb-1">Akhil Tiwari</h3>
+                  <p className="text-gray-700">Enjoys exploring Algebraic Geometry and has a keen interest in Programming.</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="bg-white p-6 rounded-xl shadow flex flex-col md:flex-row items-center"
+              >
+                <img
+                  src="https://via.placeholder.com/150?text=Vaidik+%26+Shreyak"
+                  alt="Vaidik & Shreyak"
+                  className="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6"
+                />
+                <div>
+                  <h3 className="text-xl font-semibold mb-1">Vaidik & Shreyak Thakkar</h3>
+                  <p className="text-gray-700">Brothers specializing in Trikonmiti & Ganitsaarsangraha.</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="bg-white p-6 rounded-xl shadow flex flex-col md:flex-row items-center"
+              >
+                <img
+                  src="https://via.placeholder.com/150?text=Nameet+%26+Tavas"
+                  alt="Nameet & Tavas"
+                  className="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6"
+                />
+                <div>
+                  <h3 className="text-xl font-semibold mb-1">Nameet & Tavas Shah</h3>
+                  <p className="text-gray-700">Focus on Calculus and advanced problem-solving techniques. Active in campus leadership.</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="bg-white p-6 rounded-xl shadow flex flex-col md:flex-row items-center"
+              >
+                <img
+                  src="https://via.placeholder.com/150?text=Shailesh+Pandey"
+                  alt="Shailesh Pandey"
+                  className="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6"
+                />
+                <div>
+                  <h3 className="text-xl font-semibold mb-1">Shailesh Pandey</h3>
+                  <p className="text-gray-700">Excelled in Leelavati Granth, aiming to appear for advanced Ganit Shastra exams next year.</p>
+                </div>
+              </motion.div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </section>
+
+      {/**
+        ACHIEVEMENTS SECTION
+      **/}
+      <section id="achievements" className="py-16 px-4 md:px-8">
+        <div className="max-w-5xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-4xl font-bold text-center mb-10"
+          >
+            Achievements
+          </motion.h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="bg-gray-50 p-6 rounded-xl shadow"
+            >
+              <h3 className="font-bold text-xl mb-2">2023</h3>
+              <ul className="list-disc pl-4 text-gray-700 space-y-2">
+                <li>Paathshala established at Hingane, Pune with three residential students.</li>
+                <li>Two students completed the Leelavati exam.</li>
+              </ul>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="bg-gray-50 p-6 rounded-xl shadow"
+            >
+              <h3 className="font-bold text-xl mb-2">2024</h3>
+              <ul className="list-disc pl-4 text-gray-700 space-y-2">
+                <li>National-level Gold Medal by Shreya Lonikar at Ganit Shalaka Pariksha in Ayodhya.</li>
+                <li>Two students completed Beejganitam, two completed Leelavati.</li>
+                <li>Tejas Kulkarni Guruji completed the Ganit Maha Pariksha.</li>
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/**
+        GALLERY SECTION
+      **/}
+      <section id="gallery" className="py-16 px-4 md:px-8 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-4xl font-bold text-center mb-10"
+          >
+            Gallery
+          </motion.h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <img
+              src="https://via.placeholder.com/400x300?text=Classroom+1"
+              alt="Classroom 1"
+              className="w-full h-auto rounded-lg shadow"
+            />
+            <img
+              src="https://via.placeholder.com/400x300?text=Campus+View"
+              alt="Campus View"
+              className="w-full h-auto rounded-lg shadow"
+            />
+            <img
+              src="https://via.placeholder.com/400x300?text=Events"
+              alt="Events"
+              className="w-full h-auto rounded-lg shadow"
+            />
+            <img
+              src="https://via.placeholder.com/400x300?text=Celebrations"
+              alt="Celebrations"
+              className="w-full h-auto rounded-lg shadow"
+            />
+            <img
+              src="https://via.placeholder.com/400x300?text=Group+Photo"
+              alt="Group Photo"
+              className="w-full h-auto rounded-lg shadow"
+            />
+            <img
+              src="https://via.placeholder.com/400x300?text=Study+Sessions"
+              alt="Study Sessions"
+              className="w-full h-auto rounded-lg shadow"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/**
+        CONTACT SECTION
+      **/}
+      <section id="contact" className="py-16 px-4 md:px-8 bg-gray-100">
+        <div className="max-w-7xl mx-auto space-y-10">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-4xl font-bold text-center"
+          >
+            Contact Us
+          </motion.h2>
+          <p className="text-lg md:text-xl text-center text-gray-700 max-w-2xl mx-auto">
+            Got questions or want to learn more? We’re here to help you start your journey into the world of mathematics.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Contact Info Card */}
+            <div className="bg-white rounded-lg shadow p-6 md:col-span-1">
+              <h3 className="text-2xl font-semibold mb-4">Get in Touch</h3>
+              <div className="text-gray-700 space-y-3">
+                <p className="flex items-center">
+                  <span className="material-icons mr-2 text-gray-500">email</span>
+                  [Insert Email Address]
+                </p>
+                <p className="flex items-center">
+                  <span className="material-icons mr-2 text-gray-500">call</span>
+                  [Insert Phone Number]
+                </p>
+                <p className="flex items-center">
+                  <span className="material-icons mr-2 text-gray-500">location_on</span>
+                  [Insert Address]
+                </p>
+              </div>
+
+              <p className="text-gray-500 text-sm italic mt-4">Hingane, Sinhagad Road, Pune (Initial Location)</p>
+
+              <div className="mt-6">
+                <p className="mb-2 font-semibold">Follow Us:</p>
+                <div className="flex space-x-4 text-gray-500">
+                  <span className="material-icons cursor-pointer hover:text-black">facebook</span>
+                  <span className="material-icons cursor-pointer hover:text-black">camera_alt</span>
+                  <span className="material-icons cursor-pointer hover:text-black">twitter</span>
+                  <span className="material-icons cursor-pointer hover:text-black">smart_display</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Form Card */}
+            <div className="bg-white rounded-lg shadow p-6 md:col-span-2">
+              <h3 className="text-2xl font-semibold mb-4">Send a Message</h3>
+              <form className="space-y-4" onSubmit={handleSubmit}>
+                <div>
+                  <label htmlFor="name" className="block mb-1 font-medium">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Your Name"
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block mb-1 font-medium">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Your Email"
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block mb-1 font-medium">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Your Message"
+                    rows={4}
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  className="bg-gray-900 text-white font-semibold px-6 py-2 rounded hover:bg-gray-700 transition"
+                >
+                  Send Message
+                </button>
+              </form>
+              {submitStatus && (
+                <p className="mt-2 text-sm text-gray-700">{submitStatus}</p>
+              )}
+              <p className="mt-2 text-sm text-gray-500">Note: Form submission requires backend setup.</p>
+            </div>
+          </div>
+
+          {/* Map */}
+          <div className="w-full h-64 md:h-96 mx-auto rounded-lg overflow-hidden shadow-lg">
+            <iframe
+              className="w-full h-full"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.6915869709097!2d73.80772537664823!3d18.471151314276575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf176c7513f3%3A0x6302c4c53ea8ad94!2sSinhagad%20Rd%2C%20Hingne%20Budrukh%2C%20Pune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1689843454964!5m2!1sen!2sin"
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      {/**
+        FOOTER
+      **/}
+      <footer className="bg-gray-900 text-white py-6 text-center">
+        <p className="text-sm md:text-base">&copy; {new Date().getFullYear()} Bhaskarprabha Foundation. All rights reserved.</p>
+      </footer>
+    </div>
+  );
+}
